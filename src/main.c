@@ -1,12 +1,13 @@
 #include "app.h"
 #include "chart_widget.h"
 #include "enum.h"
-#include "side_panel.h"
+#include "side_label.h"
+#include "side_widget.h"
 #include <raylib.h>
 
 #define WIDTH 1080
 #define HEIGHT 640
-#define FPS 60
+#define FPS 30
 
 int main(int argc, char *argv[])
 {
@@ -26,17 +27,47 @@ int main(int argc, char *argv[])
         .mouseAxis = (MouseAxis){.tick = 1, .color = ColorAlpha(GRAY, 0.3)},
         .yAxis = (YAxis){.value = 10.0, .space = 100},
     };
-    AddChild(&app, &chartWidget);
+    AddWidget(&app, &chartWidget);
 
-    SideWidget sideWidget = {
+    SideWidget sideWidgetTop = {
         .type = WIDGET_SIDE,
-        .title = "Side Panel",
+        .title = "Side Panel Top",
         .width = 25,
-        .height = 100,
+        .height = 50,
         .font = &app.font,
     };
+    AddWidget(&app, &sideWidgetTop);
 
-    AddChild(&app, &sideWidget);
+    SideWidget sideWidgetOne = {
+        .type = WIDGET_SIDE,
+        .title = "Side Panel 1",
+        .width = 25,
+        .height = 25,
+        .font = &app.font,
+    };
+    AddWidget(&app, &sideWidgetOne);
+
+    SideWidget sideWidgetTwo = {
+        .type = WIDGET_SIDE,
+        .title = "Side Panel 2",
+        .width = 25,
+        .height = 25,
+        .font = &app.font,
+    };
+    AddWidget(&app, &sideWidgetTwo);
+
+    SideLabel labels[10];
+    for (int i = 0; i < 10; i++)
+    {
+        labels[i] = (SideLabel){
+            .type = WIDGET_SIDE_LABEL,
+            .price = 10.00,
+            .bid = 10.00,
+            .date = "10:10:10",
+        };
+        AddSideWidget(&sideWidgetOne, &labels[i]);
+        AddSideWidget(&sideWidgetTwo, &labels[i]);
+    }
 
     while (!WindowShouldClose())
     {

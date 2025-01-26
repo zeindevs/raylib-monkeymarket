@@ -7,4 +7,9 @@ typedef enum
     WIDGET_SIDE,
 } WidgetType;
 
+typedef enum
+{
+    WIDGET_SIDE_LABEL,
+} WidgetChildType;
+
 #endif // !H_ENUM

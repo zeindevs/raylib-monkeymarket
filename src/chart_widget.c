@@ -28,7 +28,7 @@ void RenderChartWidget(ChartWidget *widget)
     DrawTextEx(*widget->font, widget->title, pos, 14, 0, WHITE);
 
     char zoomStr[16];
-    sprintf(zoomStr, "%d", widget->zoom);
+    sprintf(zoomStr, "zoom: %d", widget->zoom);
     DrawTextEx(*widget->font, zoomStr, (Vector2){.x = 10, .y = 40}, 14, 0, WHITE);
 
     RenderYAxis(widget->bounds, &widget->yAxis, widget->font);

@@ -1,21 +1,61 @@
-#include "side_panel.h"
+#include "side_widget.h"
+#include "enum.h"
+#include "side_label.h"
 #include <raylib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 void UpdateSideWidget(SideWidget *widget)
 {
-    widget->bounds.width = (float)GetScreenWidth() * widget->width / widget->height;
-    widget->bounds.height = GetScreenHeight() - 2;
+    widget->bounds.width = GetScreenWidth() * (float)widget->width / 100;
+    widget->bounds.height = GetScreenHeight() * (float)widget->height / 100;
+
+    for (int i = 0; i < widget->size; i++)
+    {
+        WidgetChildType tag = *((WidgetChildType *)widget->child[i]);
+        switch (tag)
+        {
+        case WIDGET_SIDE_LABEL:
+            SideLabel *label = widget->child[i];
+            label->offset = (i + 1) * 20;
+            UpdateSideLabel(widget->bounds, label);
+            break;
+        }
+    }
 }
 
 void RenderSideWidget(SideWidget *widget)
 {
     /*DrawRectangleRoundedLines(widget->bounds, widget->round, 1, GRAY);*/
-    Rectangle rec = {.x = 0, .y = 0, .width = widget->bounds.width + 1, .height = 30};
-    Vector2 pos = {.x = 10, .y = 9};
+    Rectangle rec = {.x = 0, .y = widget->offset, .width = widget->bounds.width + 1, .height = 30};
+    Vector2 pos = {.x = 10, .y = widget->offset + 9};
     widget->bounds.x = GetScreenWidth() - widget->bounds.width;
+    widget->bounds.y = widget->offset;
     rec.x = GetScreenWidth() - widget->bounds.width;
     pos.x = rec.x + 10;
     DrawRectangleRounded(widget->bounds, widget->round, 1, BLACK);
     DrawRectangleRounded(rec, widget->round, 1, ColorAlpha(GRAY, 0.3));
     DrawTextEx(*widget->font, widget->title, pos, 14, 0, WHITE);
+
+    for (int i = 0; i < widget->size; i++)
+    {
+        WidgetChildType tag = *((WidgetChildType *)widget->child[i]);
+        switch (tag)
+        {
+        case WIDGET_SIDE_LABEL:
+            RenderSideLabel(widget->bounds, widget->child[i], widget->font);
+            break;
+        }
+    }
+}
+void AddSideWidget(SideWidget *widget, void *child)
+{
+    widget->child = realloc(widget->child, (widget->size + 1) * sizeof(void *));
+    if (widget->child == NULL)
+    {
+        fprintf(stderr, "Memory allocation failed\n");
+        exit(1);
+    }
+    widget->child[widget->size] = child;
+    widget->size++;
 }

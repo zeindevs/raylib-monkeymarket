@@ -1,9 +1,7 @@
 #ifndef H_APP
 #define H_APP
 
-#include "mouse_axis.h"
-#include "panel.h"
-#include "y_axis.h"
+#include <raylib.h>
 
 typedef struct App
 {
@@ -14,6 +12,6 @@ typedef struct App
 
 void Update(App *app);
 void Render(App *app);
-void AddChild(App *app, void *widget);
+void AddWidget(App *app, void *widget);
 
 #endif // !H_APP

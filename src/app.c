@@ -1,12 +1,14 @@
 #include "app.h"
 #include "chart_widget.h"
 #include "enum.h"
-#include "side_panel.h"
+#include "side_widget.h"
+#include <raylib.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 void Update(App *app)
 {
+    int sw = 0;
     for (int i = 0; i < app->size; i++)
     {
         WidgetType tag = *((WidgetType *)app->child[i]);
@@ -16,7 +18,14 @@ void Update(App *app)
             UpdateChartWidget(app->child[i]);
             break;
         case WIDGET_SIDE:
-            UpdateSideWidget(app->child[i]);
+            SideWidget *side = app->child[i];
+            if (sw > 0)
+            {
+                SideWidget *sideRoot = app->child[i - 1];
+                side->offset = sideRoot->bounds.y + sideRoot->bounds.height;
+            }
+            UpdateSideWidget(side);
+            sw++;
             break;
         }
     }
@@ -39,7 +48,7 @@ void Render(App *app)
     }
 }
 
-void AddChild(App *app, void *widget)
+void AddWidget(App *app, void *widget)
 {
     app->child = realloc(app->child, (app->size + 1) * sizeof(void *));
     if (app->child == NULL)

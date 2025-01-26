@@ -12,10 +12,14 @@ typedef struct SideWidget
     Rectangle bounds;
     int width;
     int height;
+    int offset;
     float round;
+    int size;
+    void **child;
 } SideWidget;
 
 void UpdateSideWidget(SideWidget *widget);
 void RenderSideWidget(SideWidget *widget);
+void AddSideWidget(SideWidget *widget, void *child);
 
 #endif // !H_SIDE_WIDGET
