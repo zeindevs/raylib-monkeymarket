@@ -1,5 +1,5 @@
-#ifndef H_Y_AXIS
-#define H_Y_AXIS
+#ifndef Y_AXIS_H
+#define Y_AXIS_H
 
 #include <raylib.h>
 
@@ -13,4 +13,4 @@ typedef struct YAxis
 void UpdateYAxis(Rectangle bounds, YAxis *YAxis);
 void RenderYAxis(Rectangle bounds, YAxis *YAxis, Font *font);
 
-#endif // !H_Y_AXIS
+#endif // !Y_AXIS_H

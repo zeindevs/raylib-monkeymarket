@@ -17,7 +17,7 @@ void RenderSideLabel(Rectangle bounds, SideLabel *label, Font *font)
     sprintf(priceTxt, "%.2f", label->price);
     sprintf(bidTxt, "%.2f", label->bid);
 
-    DrawTextEx(*font, priceTxt, posPrice, 14, 0, WHITE);
+    DrawTextEx(*font, priceTxt, posPrice, 14, 0, ColorAlpha(label->color, 1));
     DrawTextEx(*font, bidTxt, posBid, 14, 0, WHITE);
     DrawTextEx(*font, label->date, posDate, 14, 0, WHITE);
 }

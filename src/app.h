@@ -1,5 +1,5 @@
-#ifndef H_APP
-#define H_APP
+#ifndef APP_H
+#define APP_H
 
 #include <raylib.h>
 
@@ -14,4 +14,4 @@ void Update(App *app);
 void Render(App *app);
 void AddWidget(App *app, void *widget);
 
-#endif // !H_APP
+#endif // !APP_H

@@ -2,6 +2,7 @@
 #include "chart_widget.h"
 #include "enum.h"
 #include "side_label.h"
+#include "side_progress.h"
 #include "side_widget.h"
 #include <raylib.h>
 
@@ -38,6 +39,26 @@ int main(int argc, char *argv[])
     };
     AddWidget(&app, &sideWidgetTop);
 
+    SideProgress progress[14];
+    for (int i = 0; i < 14; i++)
+    {
+        Color color = RED;
+        int rate = 10.00 * i;
+        if (i >= 7)
+        {
+            color = GREEN;
+            rate = 10.00 * (14 - i);
+        }
+        progress[i] = (SideProgress){
+            .type = WIDGET_SIDE_PROGRESS,
+            .price = 10.00,
+            .bid = 10.00,
+            .rate = rate,
+            .color = color,
+        };
+        AddSideWidget(&sideWidgetTop, &progress[i]);
+    }
+
     SideWidget sideWidgetOne = {
         .type = WIDGET_SIDE,
         .title = "Side Panel 1",
@@ -59,11 +80,15 @@ int main(int argc, char *argv[])
     SideLabel labels[10];
     for (int i = 0; i < 10; i++)
     {
+        Color color = RED;
+        if (i % 2 == 0)
+            color = GREEN;
         labels[i] = (SideLabel){
             .type = WIDGET_SIDE_LABEL,
             .price = 10.00,
             .bid = 10.00,
             .date = "10:10:10",
+            .color = color,
         };
         AddSideWidget(&sideWidgetOne, &labels[i]);
         AddSideWidget(&sideWidgetTwo, &labels[i]);

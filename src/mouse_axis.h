@@ -1,5 +1,5 @@
-#ifndef H_MOUSE_AXIS
-#define H_MOUSE_AXIS
+#ifndef MOUSE_AXIS_H
+#define MOUSE_AXIS_H
 
 #include <raylib.h>
 
@@ -17,4 +17,4 @@ typedef struct MouseAxis
 void UpdateMouseAxis(Rectangle bounds, MouseAxis *mouseAxis);
 void RenderMouseAxis(Rectangle bounds, MouseAxis *mouseAxis, Font *font);
 
-#endif // !H_MOUSE_AXIS
+#endif // !MOUSE_AXIS_H

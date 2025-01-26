@@ -1,6 +1,7 @@
 #include "side_widget.h"
 #include "enum.h"
 #include "side_label.h"
+#include "side_progress.h"
 #include <raylib.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,6 +20,11 @@ void UpdateSideWidget(SideWidget *widget)
             SideLabel *label = widget->child[i];
             label->offset = (i + 1) * 20;
             UpdateSideLabel(widget->bounds, label);
+            break;
+        case WIDGET_SIDE_PROGRESS:
+            SideProgress *progress = widget->child[i];
+            progress->offset = (i + 1) * 20;
+            UpdateSideProgress(widget->bounds, progress);
             break;
         }
     }
@@ -44,6 +50,9 @@ void RenderSideWidget(SideWidget *widget)
         {
         case WIDGET_SIDE_LABEL:
             RenderSideLabel(widget->bounds, widget->child[i], widget->font);
+            break;
+        case WIDGET_SIDE_PROGRESS:
+            RenderSideProgress(widget->bounds, widget->child[i], widget->font);
             break;
         }
     }

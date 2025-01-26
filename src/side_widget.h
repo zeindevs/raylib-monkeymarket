@@ -1,5 +1,5 @@
-#ifndef H_SIDE_WIDGET
-#define H_SIDE_WIDGET
+#ifndef SIDE_WIDGET_H
+#define SIDE_WIDGET_H
 
 #include "enum.h"
 #include <raylib.h>
@@ -22,4 +22,4 @@ void UpdateSideWidget(SideWidget *widget);
 void RenderSideWidget(SideWidget *widget);
 void AddSideWidget(SideWidget *widget, void *child);
 
-#endif // !H_SIDE_WIDGET
+#endif // !SIDE_WIDGET_H

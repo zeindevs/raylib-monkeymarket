@@ -1,5 +1,5 @@
-#ifndef H_ENUM
-#define H_ENUM
+#ifndef ENUM_H
+#define ENUM_H
 
 typedef enum
 {
@@ -10,6 +10,7 @@ typedef enum
 typedef enum
 {
     WIDGET_SIDE_LABEL,
+    WIDGET_SIDE_PROGRESS,
 } WidgetChildType;
 
-#endif // !H_ENUM
+#endif // !ENUM_H

@@ -1,5 +1,5 @@
-#ifndef H_CHART_WIDGET
-#define H_CHART_WIDGET
+#ifndef CHART_WIDGET_H
+#define CHART_WIDGET_H
 
 #include "enum.h"
 #include "mouse_axis.h"
@@ -23,4 +23,4 @@ typedef struct ChartWidget
 void UpdateChartWidget(ChartWidget *widget);
 void RenderChartWidget(ChartWidget *widget);
 
-#endif // !H_CHART_WIDGET
+#endif // !CHART_WIDGET_H
