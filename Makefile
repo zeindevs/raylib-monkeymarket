@@ -1,9 +1,9 @@
-all: build run
+all: compile run
 
 run:
 	@./build/monkeymarket
 
-build:
+compile:
 	@cmake --build build
 
 init:

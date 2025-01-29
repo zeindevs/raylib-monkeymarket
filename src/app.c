@@ -1,7 +1,7 @@
 #include "app.h"
-#include "chart_widget.h"
-#include "enum.h"
-#include "side_widget.h"
+#include "widgets/chart_widget.h"
+#include "widgets/enum.h"
+#include "widgets/side_widget.h"
 #include <raylib.h>
 #include <stdio.h>
 #include <stdlib.h>

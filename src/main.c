@@ -1,17 +1,26 @@
 #include "app.h"
-#include "chart_widget.h"
-#include "enum.h"
-#include "side_label.h"
-#include "side_progress.h"
-#include "side_widget.h"
+#include "widgets/chart_widget.h"
+#include "widgets/enum.h"
+#include "widgets/side_label.h"
+#include "widgets/side_progress.h"
+#include "widgets/side_widget.h"
 #include <raylib.h>
+#include <stdlib.h>
+#include <time.h>
 
 #define WIDTH 1080
 #define HEIGHT 640
 #define FPS 30
 
+int randomInt(int min, int max)
+{
+    return rand() % (max + 1 - min) + min;
+}
+
 int main(int argc, char *argv[])
 {
+    srand(time(NULL));
+
     SetConfigFlags(FLAG_WINDOW_RESIZABLE | FLAG_WINDOW_HIGHDPI | FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
     InitWindow(WIDTH, HEIGHT, "Monkey Market v0.1");
 
@@ -51,8 +60,8 @@ int main(int argc, char *argv[])
         }
         progress[i] = (SideProgress){
             .type = WIDGET_SIDE_PROGRESS,
-            .price = 10.00,
-            .bid = 10.00,
+            .price = (float)randomInt(10, 100),
+            .bid = (float)randomInt(10, 100),
             .rate = rate,
             .color = color,
         };
@@ -81,12 +90,12 @@ int main(int argc, char *argv[])
     for (int i = 0; i < 10; i++)
     {
         Color color = RED;
-        if (i % 2 == 0)
+        if (randomInt(0, 1) == 1)
             color = GREEN;
         labels[i] = (SideLabel){
             .type = WIDGET_SIDE_LABEL,
-            .price = 10.00,
-            .bid = 10.00,
+            .price = (float)randomInt(10, 100),
+            .bid = (float)randomInt(1, 10),
             .date = "10:10:10",
             .color = color,
         };

@@ -4,8 +4,8 @@ project(monkeymarket)
 
 find_package(raylib)
 
-file(GLOB SOURCES src/*.c)
-file(GLOB HEADERS src/*.h)
+file(GLOB SOURCES src/*.c src/widgets/*.c)
+file(GLOB HEADERS src/*.h src/**/*.h)
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 
